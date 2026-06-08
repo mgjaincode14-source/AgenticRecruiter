@@ -1,13 +1,8 @@
-# tools/coding_tool.py
 import requests
 from langchain.tools import tool
 
 LEETCODE_URL   = "https://leetcode.com/graphql"
 
-# GraphQL is a query language for APIs.
-# This is the standard way to request data from LeetCode.
-# There is no other format — this is not hardcoding a business rule,
-# it is simply the API's required request format.
 LEETCODE_QUERY = """
 query ($username: String!) {
     matchedUser(username: $username) {

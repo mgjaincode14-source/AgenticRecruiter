@@ -1,4 +1,3 @@
-# tools/resume_tool.py
 import re
 import requests
 import tempfile
