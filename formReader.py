@@ -147,10 +147,10 @@ def sync_form_to_db() -> list[int]:
 
         if db_id != -1:
             new_db_ids.append(db_id)
-            print(f"[Forms] ✓ Saved: {candidate['name']} "
+            print(f"[Forms] [OK] Saved: {candidate['name']} "
                   f"({candidate['email']}) | id={db_id}")
         else:
-            print(f"[Forms] ✗ Failed: {candidate['email']}")
+            print(f"[Forms] [FAIL] Failed: {candidate['email']}")
 
     print(f"\n[Forms] Sync complete — "
           f"{len(new_db_ids)} new candidate(s) added.\n")

@@ -4,6 +4,8 @@ load_dotenv()
 import os
 from databaseConnect import get_pending_candidates
 from formReader import sync_form_to_db
+from agent.hiringAgent  import run_hiring_agent 
+
 
 def load_job_description() -> str:
     jd_path = os.path.join(os.path.dirname(__file__), "jobDescription.txt")
@@ -66,7 +68,12 @@ def main():
               f"| {candidate['email']}")
         print(f"{'─' * 55}")
 
-        print(f"[Main] id={candidate['id']} queued for agent.")
+        print(f"[Main] id={candidate['id']} sent to agent.")
+        try:
+            decision = run_hiring_agent(candidate, job_description)
+            print(f"[Main] Agent decision for {candidate['name']}:\n{decision}")
+        except Exception as e:
+            print(f"[Main] Error processing candidate {candidate['name']}: {e}")
 
     print("\n[Main] Done.")
 

@@ -1,0 +1,9 @@
+Job Title: Software Engineer
+Role: Backend Developer
+
+Requirements:
+- Strong programming skills in Python.
+- Familiarity with SQL and databases like PostgreSQL.
+- Experience with Git and GitHub.
+- Good problem solving skills and algorithmic knowledge (LeetCode).
+- Familiarity with web frameworks like Django or Flask is a plus.

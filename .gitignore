@@ -11,3 +11,6 @@ credentials.json
 
 # IDE
 .vscode/
+
+# Virtual Environment
+venv/
