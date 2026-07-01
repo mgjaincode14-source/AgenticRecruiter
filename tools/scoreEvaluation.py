@@ -51,14 +51,33 @@ def compute_and_save_score(
     )
 
     if final_score >= 6:
-        update_stage(db_id, "shortlisted")
+        update_stage(db_id, "invited")
+        # Auto-send email to ensure it is always delivered, preventing agent skips
+        email_status = ""
+        try:
+            from tools.emails import send_assessment_email
+            from databaseConnect import get_candidate_by_id
+            c = get_candidate_by_id(db_id)
+            if c:
+                email_res = send_assessment_email.invoke({
+                    "db_id": db_id,
+                    "candidate_name": c.get("name"),
+                    "candidate_email": c.get("email")
+                })
+                email_status = f" Auto-email sent successfully: {email_res}"
+            else:
+                email_status = " Auto-email failed: candidate not found."
+        except Exception as e:
+            email_status = f" Auto-email failed with error: {str(e)}"
+            print(f"[ScoreEvaluation] Failed to auto-send email: {e}")
+
         return (
             f"DECISION: SHORTLISTED\n"
             f"Final Score : {final_score}/10\n"
             f"Resume      : {resume_score}/10 — {resume_reasoning}\n"
             f"GitHub      : {github_score}/10 — {github_reasoning}\n"
             f"Coding      : {coding_score}/10 — {coding_reasoning}\n"
-            f"Next step   : Call send_assessment_email tool."
+            f"Next step   : Email invitation sent.{email_status}"
         )
     else:
         update_stage(

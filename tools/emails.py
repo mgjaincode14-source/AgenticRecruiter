@@ -22,6 +22,15 @@ def send_assessment_email(
     Call this only after compute_and_save_score returns SHORTLISTED.
     """
 
+    try:
+        from databaseConnect import get_candidate_by_id
+        candidate = get_candidate_by_id(db_id)
+        if candidate and candidate.get("email_sent"):
+            print(f"[EmailTool] Email already sent to {candidate_name} ({candidate_email}). Skipping.")
+            return f"SUCCESS: Assessment invitation was already sent to {candidate_name} ({candidate_email})."
+    except Exception as e:
+        print(f"[EmailTool] Error checking duplicate email: {e}")
+
     sender   = os.getenv("EMAIL_SENDER")
     password = os.getenv("EMAIL_APP_PASSWORD")
 
@@ -31,21 +40,26 @@ def send_assessment_email(
             "missing in .env file. Email not sent."
         )
 
-    subject = "Invitation for Assessment Round"
+    subject = "Invitation for AI Screening Interview - AgenticATS"
+
+    interview_link = f"http://localhost:5173/interview/{db_id}"
 
     body = f"""Dear {candidate_name},
 
-Congratulations! After reviewing your resume, we are pleased to inform you
+Congratulations! After reviewing your resume and profiles, we are pleased to inform you
 that you have been shortlisted for the next stage of our recruitment process.
 
-You are invited to appear for our Online Assessment Round.
+You are invited to appear for our Online AI Screening Interview.
 
-Assessment Details:
+Interview Details:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Date     : To be communicated shortly
-Duration : 60 minutes
-Format   : Online (link will be shared separately)
+Round    : Virtual AI Screening
+Duration : ~10-15 minutes (2 minutes limit per question)
+Format   : Online (Camera and Microphone required ON)
+Link     : {interview_link}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Please ensure you are in a quiet room with a stable internet connection. You must answer each question verbally; your responses will be recorded and transcribed by our AI Hiring Agent for evaluation.
 
 Best regards,
 HR & Team"""

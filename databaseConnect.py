@@ -60,6 +60,19 @@ def get_pending_candidates() -> list[dict]:
         print(f"[DB] get_pending_candidates error: {e}")
         return []
 
+def get_all_candidates() -> list[dict]:
+    try:
+        response = (
+            supabase.table("candidates")
+            .select("*")
+            .order("created_at", desc=False)
+            .execute()
+        )
+        return response.data
+    except Exception as e:
+        print(f"[DB] get_all_candidates error: {e}")
+        return []
+
 
 def get_candidate_by_id(db_id: int) -> dict:
     try:

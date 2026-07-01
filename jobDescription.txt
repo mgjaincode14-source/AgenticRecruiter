@@ -1,9 +1,32 @@
-Job Title: Software Engineer
-Role: Backend Developer
+AI Engineer
+We are hiring an AI Engineer to design, build, and deploy production-grade AI systems including agentic pipelines, LLM integrations, and intelligent automation tools.
+Required:
 
-Requirements:
-- Strong programming skills in Python.
-- Familiarity with SQL and databases like PostgreSQL.
-- Experience with Git and GitHub.
-- Good problem solving skills and algorithmic knowledge (LeetCode).
-- Familiarity with web frameworks like Django or Flask is a plus.
+Strong Python (2+ years), with experience building production applications, not just notebooks
+Hands-on experience with LLM frameworks such as LangChain, LangGraph, or similar agentic frameworks
+Experience integrating LLM APIs (OpenAI, Anthropic, Groq, or similar)
+Solid understanding of prompt engineering, tool calling, and structured outputs
+Experience with REST API development (FastAPI or Flask)
+Working knowledge of SQL and at least one production database (PostgreSQL, MySQL, or similar)
+Git and version control discipline
+At least one deployed AI project visible on GitHub (not a tutorial clone)
+
+Nice to have:
+
+Experience with vector databases (Pinecone, Weaviate, pgvector)
+Experience with RAG (Retrieval-Augmented Generation) pipelines
+Familiarity with OCR tools (Tesseract, Google Vision, AWS Textract)
+Experience with speech-to-text or audio processing (Whisper, Deepgram)
+Frontend experience (React) to build interfaces around AI tools
+Experience with Docker and basic deployment (Render, Railway, AWS)
+Understanding of evaluation metrics for LLM outputs and agent reliability
+
+What you'll work on:
+
+Building autonomous agents that reason, call tools, and make decisions independently
+Integrating multiple data sources (APIs, documents, databases) into a single AI-driven workflow
+Designing scoring and evaluation systems for AI-generated outputs
+Working closely with product and engineering to ship AI features end-to-end
+
+Ideal candidate:
+Someone who treats LLMs as a building block, not magic — understands their limitations, designs around failure cases, and writes clean, maintainable code around AI components rather than fragile one-off scripts
