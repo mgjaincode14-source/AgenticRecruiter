@@ -13,13 +13,20 @@ This project is an end-to-end autonomous AI hiring pipeline. It automatically sy
 ## 🛠️ Prerequisites & Requirements
 
 - **Operating System**: Windows / macOS / Linux
-- **Python**: Version `3.10` or higher
+- **Python**: **Strictly Version `3.11.x`** (Newer versions like 3.12/3.14 cause severe version conflicts with Langchain and LangGraph packages).
 - **Node.js**: Version `18.x` or higher (for the frontend dashboard)
-- **Supabase**: A Supabase project set up with a `candidates` table.
+- **Supabase**: A Supabase project set up with the required schema.
 
 ## ⚙️ Setup Instructions
 
-### 1. Backend (Python API & Agents)
+### 1. Supabase Database Setup
+
+Before running the application, you must initialize your Supabase database with the correct schema and tables. 
+1. Open your Supabase project dashboard.
+2. Navigate to the **SQL Editor**.
+3. Copy the entire contents of the `supabase_setup.sql` file provided in this repository and run it in the SQL Editor. This will create the `candidates`, `interview_questions`, and `interviewed_candidates` tables and set the correct permissions.
+
+### 2. Backend (Python API & Agents)
 
 1. **Open the Terminal** and navigate to the project root.
 2. **Set up a Virtual Environment**:
@@ -31,7 +38,7 @@ This project is an end-to-end autonomous AI hiring pipeline. It automatically sy
    ```powershell
    pip install -r requirements.txt
    ```
-   *(Note: Ensure you have LangGraph, LangChain, FastAPI, Uvicorn, and Supabase packages installed. If `requirements.txt` is missing, manually install them.)*
+   *(Note: The requirements.txt contains the exact package versions required for this project to run without conflicts.)*
 4. **Environment Variables**: 
    Create a `.env` file in the project root folder. You can use the provided `.env.example` as a template.
    Fill in your actual API keys:
@@ -44,7 +51,7 @@ This project is an end-to-end autonomous AI hiring pipeline. It automatically sy
 6. **Job Description**:
    Ensure `jobDescription.txt` is populated with the target role's requirements. This file is the source of truth for the Agent's scoring logic.
 
-### 2. Frontend (React Dashboard)
+### 3. Frontend (React Dashboard)
 
 1. Open a **new Terminal window** and navigate to the frontend folder:
    ```powershell
